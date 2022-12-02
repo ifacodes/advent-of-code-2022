@@ -1,39 +1,20 @@
+mod day1;
+mod day2;
+
 use anyhow::*;
+use day1::day_1;
+use day2::day_2;
 use std::{
     fs::File,
-    io::{BufRead, BufReader},
+    io::{BufReader, Read},
 };
 
 fn main() -> Result<()> {
-    day_1()?;
-
+    day_1(open_file("day1")?)?;
+    day_2(open_file("day2")?)?;
     Ok(())
 }
 
-fn day_1() -> Result<()> {
-    let br = BufReader::new(File::open("./input/day_1")?);
-
-    let mut calories: Vec<u32> = br
-        .lines()
-        .map(|line| line.ok().and_then(|s| s.parse::<u32>().ok()))
-        .fold(vec![0], |mut acc, calorie| {
-            if let Some(n) = calorie {
-                if let Some(x) = acc.last_mut() {
-                    *x += n
-                }
-            } else {
-                acc.push(0)
-            }
-            acc
-        });
-
-    calories.sort();
-
-    let largest = calories.last().unwrap();
-    println!("{largest}");
-
-    let top_three: u32 = calories.as_slice()[calories.len() - 3..].iter().sum();
-    println!("{top_three}");
-
-    Ok(())
+fn open_file(name: &str) -> Result<BufReader<impl Read>> {
+    Ok(BufReader::new(File::open(format!("./input/{}", name))?))
 }
