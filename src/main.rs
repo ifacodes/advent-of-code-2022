@@ -1,4 +1,5 @@
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -6,9 +7,11 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 use anyhow::*;
 use day1::day_1;
+use day10::day_10;
 use day2::day_2;
 use day3::day_3;
 use day4::day_4;
@@ -16,6 +19,7 @@ use day5::day_5;
 use day6::day_6;
 use day7::day_7;
 use day8::day_8;
+use day9::day_9;
 use std::{
     fs::File,
     io::{BufReader, Read},
@@ -30,6 +34,8 @@ fn main() -> Result<()> {
     day_6(open_file("day6")?)?;
     day_7(open_file("day7")?)?;
     day_8()?;
+    day_9()?;
+    day_10()?;
     Ok(())
 }
 
