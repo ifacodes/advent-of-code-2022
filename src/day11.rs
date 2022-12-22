@@ -59,7 +59,7 @@ pub fn day_11() -> Result<()> {
 
 fn rounds(monkeys: &mut [Monkey], worry_save: usize) {
     for i in 0..monkeys.len() {
-        monkeys[i].inspected += monkeys[i].starting_items.len() as usize;
+        monkeys[i].inspected += monkeys[i].starting_items.len();
         let clone = monkeys[i].clone();
 
         for mut item in clone.starting_items {
